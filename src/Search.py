@@ -55,3 +55,12 @@ def find_moves(vetex,capacity,queue):
                 queue.put(Vertex(left_m,left_c+i,right_m,right_c-i,True))
             if right_c>0 and right_m>0:
                 queue.put(Vertex(left_m+1,left_c+1,right_m-1,right_c-1,True))
+                
+def game_over(vertex):
+    
+    return  (vertex.left.get_canibals() >vertex.left.get_missionaries()) or (vertex.right.get_canibals()  >vertex.right.get_missionaries())
+    
+    
+    
+    
+    
