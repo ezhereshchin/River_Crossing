@@ -32,29 +32,29 @@ def hash_func():
 def find_moves(vetex,capacity,queue):
     count=0
     left_m = vertex.left.get_missionaries()
-    left_c = vertex.left.get_caniblas()
+    left_c = vertex.left.get_canibals()
     right_m = vertex.right.get_missionaries()
-    right_c = vertex.right.get_missionaries()
+    right_c = vertex.right.get_canibals()
     boat_on_left = vertex.left.get_boat()
-    if vertex.left.boat:
+    if boat_on_left:
         #can take one or two people right?
-        for c in capacity:
+        for i in capacity:
             if left_m>i:
                 queue.put(Vertex(left_m-i,left_c,right_m+i,right_c,False))
             if left_c>i:
                 queue.put(Vertex(left_m,left_c-i,right_m,right_c+i,False))
-            if left_c>0 and left_m>0:
-                queue.put(Vertex(left_m-1,left_c-1,right_m+1,right_c+1,False))
+        if left_c>0 and left_m>0:
+            queue.put(Vertex(left_m-1,left_c-1,right_m+1,right_c+1,False))
             
     else:
         #can take one or more people left?
-        for c in capacity:
+        for i in capacity:
             if right_m>i:
                 queue.put(Vertex(left_m+i,left_c,right_m-i,right_c,True))
             if right_c>i:
                 queue.put(Vertex(left_m,left_c+i,right_m,right_c-i,True))
-            if right_c>0 and right_m>0:
-                queue.put(Vertex(left_m+1,left_c+1,right_m-1,right_c-1,True))
+        if right_c>0 and right_m>0:
+            queue.put(Vertex(left_m+1,left_c+1,right_m-1,right_c-1,True))
                 
 def game_over(vertex):
     
@@ -62,5 +62,5 @@ def game_over(vertex):
     
     
     
-    
+search = Search()
     
