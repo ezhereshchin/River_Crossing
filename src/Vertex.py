@@ -1,20 +1,24 @@
 
 class Vertex():
 
-    def __init__(self,left_mis,left_can,left_mis,right_mis,right_can, boat_on_left):
+    def __init__(self, left_mis, left_can, right_mis, right_can, boat_on_left):
        
         self.left = Side(left_mis, left_can, boat_on_left)
         self.right = Side(right_mis, right_can, not boat_on_left)
 
         return
     
-    
+    def print_vert(self):
+        if self.left.boat:
+            print("({}M {}C B|{}M {}C)".format(self.left.missionaries,self.left.canibals,self.right.missionaries,self.right.canibals))
+        else:
+            print("({}M {}C|B {}M {}C)".format(self.left.missionaries,self.left.canibals,self.right.missionaries,self.right.canibals))
 
 
 class Side():
     canibals = 0
     missionaries = 0
-    boat = False    
+    boat = False
     
     def __init__(self,mis,can,boat):
         self.canibals = can
@@ -29,5 +33,5 @@ class Side():
         return self.missionaries
     
     def get_boat(self):
-        return boat
+        return self.boat
     
