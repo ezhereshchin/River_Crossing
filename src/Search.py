@@ -26,8 +26,15 @@ class Search():
         print("Found solution! Needed {0:d} steps to reach solution".format() )
     else:
         print("No solution found")
-def hash_func():
-    return "blah"
+
+def hash_func(vertex):
+    left_m = vertex.left.get_missionaries() << 7
+    left_c = vertex.left.get_canibals() << 5
+    right_m = vertex.right.get_missionaries() << 3
+    right_c = vertex.right.get_canibals() << 1
+    if vertex.left.get_boat():
+        return left_m + left_c + right_m + rigth_c + 1 
+    return left_m + left_c + right_m + rigth_c
 
 def find_moves(vetex,capacity,queue):
     count=0
@@ -60,7 +67,6 @@ def game_over(vertex):
     
     return  (vertex.left.get_canibals() >vertex.left.get_missionaries()) or (vertex.right.get_canibals()  >vertex.right.get_missionaries())
     
-    
-    
+
 search = Search()
     
